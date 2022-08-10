@@ -6,8 +6,8 @@
 
 
 <div class="container">
-    <div class="main" *ngIf="isLogin">
-        <div class="col-md-6 col-sm-12">
+    <div class="maintweet" *ngIf="isLogin">
+        <div class="col-md-6 col-md-6">
             <div class="login-form">
                 <form #loginform="ngForm" (ngSubmit)="onLoginSubmit(loginform)">
                     <div class="form-group">
@@ -46,7 +46,7 @@
         </div>
         <p *ngIf="loginform.valid && showMessage">{{result}}</p>
     </div>
-    <div class="main" *ngIf="isRegister">
+    <div class="maintweet" *ngIf="isRegister">
         <div class="col-md-6 col-sm-12">
             <div class="register-form">
                 <form #registerform="ngForm" (ngSubmit)="onRegisterSubmit(registerform)">

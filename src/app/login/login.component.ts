@@ -33,6 +33,10 @@ export class LoginComponent implements OnInit {
     loginRequest.password=formdata.value.password;
     this.loginService.login(loginRequest).subscribe(data => {
       this.result = data.responseHeader.transactionNotification.status;
+      let statusCode = data.responseHeader.transactionNotification.statusCode;
+      if(statusCode === '0'){
+        this.loginService.setAuthStatus(true);
+      }
       this.showMessage=true;
     });
 

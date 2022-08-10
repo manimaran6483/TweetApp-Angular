@@ -8,8 +8,9 @@ import { LoginRequest } from '../request/LoginRequest';
   providedIn: 'root'
 })
 export class LoginService {
+  
   constructor(private http: HttpClient) { }
-
+  isLoggedIn:boolean = false;
 
   login(request:LoginRequest): Observable<any> {
     let url = environment.backendEndpoint+TweetAppConstants.LOGIN_URL;
@@ -26,7 +27,13 @@ export class LoginService {
     return this.http.post<any>(url,request);
   }
 
+  setAuthStatus(flag: boolean) {
+    this.isLoggedIn=flag;
+  }
 
+  getAuthStatus(){
+    return this.isLoggedIn;
+  }
 
 
 

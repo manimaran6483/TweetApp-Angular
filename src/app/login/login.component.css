@@ -2,7 +2,7 @@ body {
     font-family: "Lato", sans-serif;
 }
 
-.main{
+.maintweet{
     margin-left: 60%; 
 }
 .sidenav{
@@ -44,6 +44,7 @@ body {
 label{
     padding-bottom: 3px;
     color: rgb(55, 148, 172);
+    font-size: initial;
 }
   input.ng-touched.ng-invalid{
       border: 2px solid red;

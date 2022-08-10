@@ -1,19 +1,6 @@
-body {
-    font-family: "Lato", sans-serif;
-}
-.sidenav{
-    background-color: rgb(55, 148, 172);
-    overflow-x: hidden;
-    height:100%;
-    padding-top: 20px;
-    width: 40%;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-}
-.login-main-text{
-    margin-top: 20%;
-    padding: 60px;
-    color: rgb(255, 255, 255);
+.main-container{
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    justify-content: flex-start;
 }

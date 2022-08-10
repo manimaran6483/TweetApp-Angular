@@ -3,11 +3,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { LandingComponent } from './landing/landing.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './services/auth.guard';
+import { TweetsComponent } from './tweets/tweets.component';
 
 const routes: Routes = [
   {path:'',redirectTo: 'home', pathMatch: 'full'},
   { path: 'login', component:LoginComponent},
-  {path:'home',component:LandingComponent,canActivate: [AuthGuard]}
+  {path: 'home', component: LandingComponent, children: [
+    {path: '',component: TweetsComponent}
+  ]
+  ,canActivate: [AuthGuard]}
 ];
 
 @NgModule({

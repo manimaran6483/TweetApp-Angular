@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { LoginService } from '../services/login-service.service';
 import { LoginRequest } from '../request/LoginRequest';
 import { UtilService } from '../services/util.service';
+import { NgForm } from '@angular/forms';
+import { UserResponse } from '../response/UserResponse';
 
 @Component({
   selector: 'app-login',
@@ -10,10 +12,8 @@ import { UtilService } from '../services/util.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-
-  result = '';
-  showMessage=false;
+ 
+  RegError!:string;
   showError=false;
   isLogin!:boolean
   isRegister!:boolean
@@ -25,31 +25,61 @@ export class LoginComponent implements OnInit {
       this.isLogin=true
     }
 
-  onLoginSubmit(formdata:any) {
+  onLoginSubmit(formdata:NgForm) {
     //write validation if needed
     const loginRequest:LoginRequest = this.utilService.getLoginRequest(formdata.value.username,formdata.value.password);
-    console.log(formdata);
     loginRequest.loginID=formdata.value.username;
     loginRequest.password=formdata.value.password;
-    this.loginService.login(loginRequest).subscribe(data => {
-      this.result = data.responseHeader.transactionNotification.status;
-      let statusCode = data.responseHeader.transactionNotification.statusCode;
+    this.loginService.login(loginRequest).subscribe((response :UserResponse) => {
+      console.log(response);
+      let statusCode = response.responseHeader.transactionNotification.statusCode;
       if(statusCode === '0'){
-        this.loginService.setAuthStatus(true);
+        this.setSession(response);
+        formdata.reset();
+        this.router.navigate(['']);
+      }else{
+        this.RegError=response.responseHeader.transactionNotification.remarks.messages[0].description;
+        window.alert(this.RegError);
       }
-      this.showMessage=true;
+    },(response:any)=>{
+      this.RegError=response.error.responseHeader.transactionNotification.remarks.messages[0].description;
+      window.alert(this.RegError);
     });
-
+    
   }
 
-  onRegisterSubmit(formdata:any){
+  setSession(response:UserResponse){
+    const userDetail= response.data;
+    if(userDetail.length >0){
+      let user = userDetail[0];
+      sessionStorage.setItem("userId",user.userId);
+      sessionStorage.setItem("loginId",user.loginId);
+      sessionStorage.setItem("isLoggedIn","true");
+    }
+}
+
+  onRegisterSubmit(formdata:NgForm){
+    console.log(formdata);
     const registerRequest = this.utilService.getRegisterRequest(formdata.value.username,formdata.value.password,formdata.value.cpassword,
       formdata.value.firstname,formdata.value.lastname,formdata.value.email,formdata.value.number);
-      console.log(formdata.value);
-      console.log(registerRequest);
+      this.loginService.register(registerRequest).subscribe((response :UserResponse) =>{
+        let statusCode = response.responseHeader.transactionNotification.statusCode;
+        if(statusCode === '0'){
+          this.router.navigate(['login']);
+          formdata.reset();
+        }else{
+          this.RegError=response.responseHeader.transactionNotification.remarks.messages[0].description;
+          window.alert(this.RegError);
+        }
+      },(response:any)=>{
+        this.RegError=response.error.responseHeader.transactionNotification.remarks.messages[0].description;
+        window.alert(this.RegError);
+      });
+
+    
   }
 
-  onChange(event:any){
+  onChangePassword(event:any){
 
     var password = event.target.value.toString();
     console.log(password);

@@ -4,35 +4,30 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { TweetAppConstants } from '../app.constants';
 import { LoginRequest } from '../request/LoginRequest';
+import { UserResponse } from '../response/UserResponse';
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
   
   constructor(private http: HttpClient) { }
-  isLoggedIn:boolean = false;
 
   login(request:LoginRequest): Observable<any> {
     let url = environment.backendEndpoint+TweetAppConstants.LOGIN_URL;
-    return this.http.post<any>(url,request);
+    return this.http.post<UserResponse>(url,request);
   }
 
   register(request:any){
     let url = environment.backendEndpoint+TweetAppConstants.REGISTER_PATH;
-    return this.http.post<any>(url,request);
+    return this.http.post<UserResponse>(url,request);
   }
 
   forgotPassword(request:any){
     let url = environment.backendEndpoint+TweetAppConstants.FORGOTPASSWORD_PATH;
-    return this.http.post<any>(url,request);
+    return this.http.post<UserResponse>(url,request);
   }
-
-  setAuthStatus(flag: boolean) {
-    this.isLoggedIn=flag;
-  }
-
   getAuthStatus(){
-    return this.isLoggedIn;
+    return sessionStorage.getItem("isLoggedIn") === 'true' ? true : false;
   }
 
 

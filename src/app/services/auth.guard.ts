@@ -16,6 +16,7 @@ constructor(private loginService: LoginService,private router:Router){}
       var isAuthenticated = this.loginService.getAuthStatus();
       if (!isAuthenticated) {
           this.router.navigate(['/login']);
+          return isAuthenticated;
       }
       return isAuthenticated;
   }

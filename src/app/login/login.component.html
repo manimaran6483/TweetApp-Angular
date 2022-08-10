@@ -7,7 +7,7 @@
 
 <div class="container">
     <div class="maintweet" *ngIf="isLogin">
-        <div class="col-md-6 col-md-6">
+        <div class="col-md-6 col-sm-12">
             <div class="login-form">
                 <form #loginform="ngForm" (ngSubmit)="onLoginSubmit(loginform)">
                     <div class="form-group">
@@ -20,7 +20,7 @@
                     <div class="form-group">
                         <label><b>Password</b></label>
                         <input type="password" class="form-control" name="password" #password="ngModel" ngModel
-                            id="password" placeholder="Password" (change)=onChange($event) required>
+                            id="password" placeholder="Password" (change)=onChangePassword($event) required>
                         <small class="form-text form-muted" *ngIf="password.touched && !password.valid">Enter
                             password</small>
                     </div>
@@ -44,7 +44,6 @@
             <p class=“invalid”>Minimum <b>8 characters</b></p>
 
         </div>
-        <p *ngIf="loginform.valid && showMessage">{{result}}</p>
     </div>
     <div class="maintweet" *ngIf="isRegister">
         <div class="col-md-6 col-sm-12">
@@ -88,14 +87,14 @@
                     <div class="form-group">
                         <label><b>Password</b></label>
                         <input type="password" class="form-control" name="password" #password="ngModel" ngModel
-                            id="password" placeholder="Password" (change)=onChange($event) required>
+                            id="password" placeholder="Password" (change)=onChangePassword($event) required>
                         <small class="form-text form-muted" *ngIf="password.touched && !password.valid">Enter
                             password</small>
                     </div>
                     <div class="form-group">
                         <label><b>Confirm Password</b></label>
                         <input type="password" class="form-control" name="cpassword" #cpassword="ngModel" ngModel
-                            id="cpassword" placeholder="Password" (change)=onChange($event) required>
+                            id="cpassword" placeholder="Password" (change)=onChangePassword($event) required>
                         <small class="form-text form-muted" *ngIf="cpassword.touched && !cpassword.valid">Enter
                             password</small>
                     </div>
@@ -116,7 +115,6 @@
             <p class=“invalid”>Minimum <b>8 characters</b></p>
 
         </div>
-        <p *ngIf="registerform.valid && showMessage">{{result}}</p>
     </div>
 
 </div>

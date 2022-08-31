@@ -20,6 +20,8 @@ body {
     margin-bottom: 10px;
 }
 .login-form{
+    width: 250px;
+    height: 220px;
     margin-top: 50%;
 }
 .register-form{
@@ -34,11 +36,19 @@ body {
 /* .login-main-text h2{
     font-weight: 300;
 } */
-
 .btn-black{
-    background-color: rgb(55, 148, 172) !important;
+    background-color: rgb(55, 148, 172);
     margin:5px;
     color: #fff;
+    font-size: 14px;
+    padding: 5px,8px;
+}
+
+button[disabled]{
+    padding: 5px,8px;
+    margin:5px;
+    color: #fff;
+    font-size: 14px;
 }
 
 label{

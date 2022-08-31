@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-tweet-item',
@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TweetItemComponent implements OnInit {
 
+  @Input() tweet: any;
+  isLiked :boolean =false;
   constructor() { }
 
   ngOnInit(): void {
   }
 
+
+  onLikeClick(){
+    this.isLiked = !this.isLiked;
+
+    // like logic
+  }
 }

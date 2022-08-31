@@ -7,9 +7,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { LandingComponent } from './landing/landing.component';
 import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { TweetsComponent } from './tweets/tweets.component';
-import { PostTweetComponent } from './post-tweet/post-tweet.component';
-import { TweetItemComponent } from './tweet-item/tweet-item.component';
+import { TweetsComponent } from './Tweet/tweets/tweets.component';
+import { PostTweetComponent } from './Tweet/post-tweet/post-tweet.component';
+import { TweetItemComponent } from './Tweet/tweet-item/tweet-item.component';
 @NgModule({
   declarations: [
     AppComponent,

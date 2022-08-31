@@ -10,6 +10,7 @@ export class NavbarComponent implements OnInit {
 
   userId!:string|null;
   constructor(private router : Router) { }
+  
 
   ngOnInit(): void {
     this.userId=sessionStorage.getItem("userId");
@@ -20,4 +21,6 @@ export class NavbarComponent implements OnInit {
     sessionStorage.clear();
     this.router.navigate(['login']);
   }
+
+
 }

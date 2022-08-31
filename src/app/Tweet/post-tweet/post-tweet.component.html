@@ -1,0 +1,16 @@
+<div class="PostContainer">
+    <div class="avatar">
+        <img src="'../../../assets/avatar.jpg" alt="avatar image" />
+    </div>
+    <form  #postform="ngForm" (ngSubmit)="onSubmit(postform)">
+        <div class="form-group">
+            <textarea class="form-control" id="posttext" name="posttext" maxlength="144" ngModel #posttext="ngModel" rows="3"
+            placeholder="Write something here..." required>
+            </textarea>
+        </div>
+        <div class="text-length">
+            <span>{{posttext?.value?.length ? posttext?.value?.length : 0}}/144</span>
+        </div>
+        <button type="submit" class="btn btn-success">Tweet</button>
+    </form>
+</div>

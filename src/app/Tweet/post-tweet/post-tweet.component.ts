@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-post-tweet',
@@ -12,4 +13,8 @@ export class PostTweetComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
+  onSubmit(formdata:NgForm){
+    
+  }
 }

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginService } from '../services/login-service.service';
+import { LoginService } from '../services/LoginService/login-service.service';
 import { LoginRequest } from '../request/LoginRequest';
-import { UtilService } from '../services/util.service';
+import { UtilService } from '../services/UtilService/util.service';
 import { NgForm } from '@angular/forms';
 import { UserResponse } from '../response/UserResponse';
 
@@ -17,7 +17,6 @@ export class LoginComponent implements OnInit {
   showError=false;
   isLogin!:boolean
   isRegister!:boolean
-  isForgot !:boolean;
   constructor(private loginService: LoginService,private utilService: UtilService,
     private router: Router) { }
 
@@ -98,12 +97,10 @@ export class LoginComponent implements OnInit {
   onRegister(event:any){
     this.isLogin=false;
     this.isRegister=true;
-    this.isForgot=false;
   }
 
-  onForgot(event:any){
-    this.isLogin=false;
+  onLogin(event:any){
+    this.isLogin=true;
     this.isRegister=false;
-    this.isForgot=true;
   }
 }

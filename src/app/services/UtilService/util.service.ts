@@ -2,9 +2,9 @@ import { fn } from '@angular/compiler/src/output/output_ast';
 import { Injectable } from '@angular/core';
 
 import {v4 as uuidv4} from 'uuid';
-import { LoginRequest } from '../request/LoginRequest';
-import { RegisterRequest } from '../request/RegisterRequest';
-import { RequestHeader } from "../request/RequestHeader"
+import { LoginRequest } from '../../request/LoginRequest';
+import { RegisterRequest } from '../../request/RegisterRequest';
+import { RequestHeader } from "../../request/RequestHeader"
 
 @Injectable({
   providedIn: 'root'
@@ -36,5 +36,8 @@ export class UtilService {
       transactionId: uuidv4()
     }
     return requestHeader;
+  }
+  getTransactionId(){
+    return uuidv4();
   }
 }

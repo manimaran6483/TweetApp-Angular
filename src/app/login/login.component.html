@@ -24,7 +24,7 @@
                         <small class="form-text form-muted" *ngIf="password.touched && !password.valid">Enter
                             password</small>
                     </div>
-                    <button type="submit" class="btn btn-black"
+                    <button type="submit" class="btn btn-black loginbutton"
                         [disabled]="!loginform.valid || showError">Login</button>
                     <button type="button" class="btn btn-black" (click)=onRegister($event)>Register</button>
                 </form>
@@ -98,6 +98,7 @@
                         <small class="form-text form-muted" *ngIf="cpassword.touched && !cpassword.valid">Enter
                             password</small>
                     </div>
+                    <button type="button" class="btn btn-black" (click)=onLogin($event)>Back</button>
                     <button type="submit" class="btn btn-black" (click)=onRegister($event) [disabled]="!registerform.valid || showError">Register</button>
                 </form>
             </div>

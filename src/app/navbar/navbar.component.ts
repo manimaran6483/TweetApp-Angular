@@ -9,11 +9,13 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
 
   userId!:string|null;
+  loginId!:string|null;
   constructor(private router : Router) { }
   
 
   ngOnInit(): void {
     this.userId=sessionStorage.getItem("userId");
+    this.loginId=sessionStorage.getItem("loginId");
   }
 
 

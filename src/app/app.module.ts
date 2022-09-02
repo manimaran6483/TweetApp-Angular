@@ -10,6 +10,11 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { TweetsComponent } from './Tweet/tweets/tweets.component';
 import { PostTweetComponent } from './Tweet/post-tweet/post-tweet.component';
 import { TweetItemComponent } from './Tweet/tweet-item/tweet-item.component';
+import { ProfileComponent } from './profile/profile.component';
+import { MytweetsComponent } from './mytweets/mytweets.component';
+import { UsersComponent } from './users/users.component';
+import { UserComponent } from './users/user/user.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +23,11 @@ import { TweetItemComponent } from './Tweet/tweet-item/tweet-item.component';
     NavbarComponent,
     TweetsComponent,
     PostTweetComponent,
-    TweetItemComponent
+    TweetItemComponent,
+    ProfileComponent,
+    MytweetsComponent,
+    UsersComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,

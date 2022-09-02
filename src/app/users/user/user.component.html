@@ -1,0 +1,14 @@
+<div class="col-md-3 user-container">
+    <div class="row">
+        <div class="col-md-3">
+            <img class="avatar" [src]="user.avatar" alt="avatar image" />
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <span style="color:  rgb(55, 148, 172);">{{' @'+user.loginId}}</span>
+                <span>{{user.firstName  | titlecase }} {{user.lastName  | titlecase}} </span>
+                <span> {{user.emailId}}</span>
+            </div>
+        </div>
+    </div>
+</div>

@@ -4,7 +4,16 @@
     border-radius: 50%;
     padding-bottom: 5px;
 }
-
+.reply,.replyspan{
+    width:20px;
+    height:20px;
+    cursor: pointer;
+}
+textarea{
+    width: 96%;
+    border-radius: 5px;
+    margin-left: 5px;
+}
 .tweet-container{
     border: 2px solid rgb(55, 148, 172);
 
@@ -23,7 +32,7 @@
     margin-left: 2px;
 }
 .likeCount{
-    right: 175px;
+    right: 125px;
     position: absolute;
     font-size: small;
     color: rgb(55, 148, 172);
@@ -34,6 +43,7 @@
     right: 175px;
     position: absolute;
     font-size: small;
+
     color: rgb(55, 148, 172);
     font-weight: bolder;
     margin-left: 2px;
@@ -42,6 +52,26 @@
     width: 10px;
     height: 10px;
     position: absolute;
-    right: 185px;
+    right: 135px;
     margin-top: 5px;
+    cursor: pointer;
+}
+button{
+   margin-top: 20px;
+   margin-right: 10px; 
+}
+.deleteicon{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 155px;
+    cursor: pointer;
+}
+
+.editicon{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 180px;
+    cursor: pointer;
 }

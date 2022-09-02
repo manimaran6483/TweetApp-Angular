@@ -8,6 +8,7 @@
             placeholder="Write something here..." required>
             </textarea>
         </div>
+        <p *ngIf="invalidTag" class="tagerror">Tag length should not exceed 50</p>
         <div class="text-length">
             <span>{{posttext?.value?.length ? posttext?.value?.length : 0}}/144</span>
         </div>

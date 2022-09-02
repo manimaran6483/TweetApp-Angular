@@ -5,7 +5,6 @@ import {v4 as uuidv4} from 'uuid';
 import { LoginRequest } from '../../request/LoginRequest';
 import { RegisterRequest } from '../../request/RegisterRequest';
 import { RequestHeader } from "../../request/RequestHeader"
-
 @Injectable({
   providedIn: 'root'
 })
@@ -21,6 +20,50 @@ export class UtilService {
   getRegisterRequest(loginId:string,password:string,cPassword:string,fname:string,lname:string,
     emailId:string,number:string){
     return new RegisterRequest(this.getRequestHeader("REGISTRATION"),loginId,password,emailId,fname,lname,cPassword,number);
+  }
+
+  getPostTweetRequest(tweet:any,tag:any,userId:any,loginId:any){
+    let requestHeader = this.getRequestHeader("TWEET");
+    return {
+      requestHeader,
+      tweet,
+      tag,
+      userId,
+      loginId
+    }
+  }
+
+  getLikeTweetRequest(likeFlag:any,userName:any,tweetId:any,likeId:any){
+    let requestHeader = this.getRequestHeader("TWEET");
+    return {
+      requestHeader,
+      likeFlag,
+      userName,
+      tweetId,
+      likeId
+    }
+  }
+
+  getReplyRequest(comment:any,tag:any,userName:any,tweetId:any){
+    let requestHeader = this.getRequestHeader("REPLY");
+    return {
+      requestHeader,
+      comment,
+      tag,
+      userName,
+      tweetId
+    }
+  }
+
+  getUpdateTweetRequest(tweet:any,tag:any,loginId:any,userId:any){
+    let requestHeader = this.getRequestHeader("REPLY");
+    return {
+      requestHeader,
+      tweet,
+      tag,
+      loginId,
+      userId
+    }
   }
 
   getRequestHeader(type:string){
@@ -40,4 +83,5 @@ export class UtilService {
   getTransactionId(){
     return uuidv4();
   }
+
 }

@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
     private router: Router) { }
 
     ngOnInit(): void {
-      this.isLogin=true
+      this.isLogin=true;
     }
 
   onLoginSubmit(formdata:NgForm) {
@@ -64,8 +64,10 @@ export class LoginComponent implements OnInit {
       this.loginService.register(registerRequest).subscribe((response :UserResponse) =>{
         let statusCode = response.responseHeader.transactionNotification.statusCode;
         if(statusCode === '0'){
-          this.router.navigate(['login']);
           formdata.reset();
+          window.alert(response.responseHeader.transactionNotification.remarks.messages[0].description);
+          this.onLogin('');
+          this.router.navigate(['login']);
         }else{
           this.RegError=response.responseHeader.transactionNotification.remarks.messages[0].description;
           window.alert(this.RegError);

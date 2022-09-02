@@ -18,7 +18,7 @@ export class TweetService {
     return this.http.get<TweetResponse>(url,{headers : headers});
   }
 
-  getTweetsofUser(username:any){
+  getTweetsofUser(username:any): Observable<TweetResponse> {
     username = username? username : sessionStorage.getItem("loginId");
     let url = environment.backendEndpoint+'/'+username;
     const headers = this.getHeaders();

@@ -1,0 +1,83 @@
+<div class="container main">
+    <div class="row">
+        <div class="col col-lg-12">
+            <div class="row g-0">
+                <div class="col-lg-8 gradient-custom text-center text-white" style="width: 100%; height: 350px">
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+                        alt="Avatar" class="img-fluid my-5 avatar" />
+                    <h5 style="font-weight: bolder; font-size: x-large; color: black">{{ '@'+user[0].loginId }}</h5>
+                </div>
+                    <div class="card-body p-4">
+                        <div *ngIf="!showForgotPassword" style="font-size: large">
+                            <h4>Information</h4>
+                            <hr class="mt-0 mb-4">
+                            <div class="row pt-1">
+                                <div class="col-6 mb-3">
+                                    <h4><b>Firstname</b></h4>
+                                    <p>{{ user[0].firstName  | titlecase}}</p>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <h4><b>Lastname</b></h4>
+                                    <p>{{ user[0].lastName  | titlecase}}</p>
+                                </div>
+                            </div>
+                            <div class="row pt-1">
+                                <div class="col-6 mb-3">
+                                    <h4><b>Email</b></h4>
+                                    <p>{{ user[0].emailId }}</p>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <h4><b>Joined on</b></h4>
+                                    <p>{{ user[0].registeredDate}}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row pt-1">
+                            <div class=“col-6” style="margin-top: 50px" *ngIf="showError">
+                            
+                                <h4>Password must contain the following:</h4>
+                            
+                                <p class=“invalid”>A <b>lowercase</b> letter</p>
+                            
+                                <p class=“invalid”>A <b>capital (uppercase)</b> letter</p>
+                            
+                                <p class=“invalid”>A <b>number</b></p>
+                            
+                                <p class=“invalid”>Minimum <b>8 characters</b></p>
+                            
+                            </div>
+                            <div class="col-6">
+                                <a *ngIf="!showForgotPassword" (click)="showforgot()" href="javascript:void(0);" style="position: relative; right: 0px">
+                                    <b>Forgot Password?</b></a>
+                                <form *ngIf="showForgotPassword" #updatePassForm="ngForm"
+                                    (ngSubmit)="onSubmit(updatePassForm)">
+                                    <div class="form-group>">
+                                        <label style="font-size: large">Password</label>
+                                        <input type="text" class="form-control" name="password" #password="ngModel"
+                                            ngModel id="password" placeholder="Password" (change)=onChangePassword($event) required>
+                                        <small class="form-text form-muted" *ngIf="password.touched && !password.valid">Enter Password</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label style="font-size: large">Confirm Password</label>
+                                        <input type="text" class="form-control" name="cpassword" #cpassword="ngModel"
+                                            ngModel id="cpassword" placeholder="Confirm Password" (change)=onChangePassword($event) required>
+                                        <small class="form-text form-muted"
+                                            *ngIf="cpassword.touched && !cpassword.valid">Enter
+                                            password</small>
+                                    </div>
+                                    <button type="submit" class="btn btn-lg btn-info" 
+                                        [disabled]="!updatePassForm.valid">Update</button>
+                                    <button type="submit" class="btn btn-lg btn-info" (click)="showforgot()">Cancel</button>
+                                    
+                                </form>
+
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+        </div>
+        
+    </div>
+</div>

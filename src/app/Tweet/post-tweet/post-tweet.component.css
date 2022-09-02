@@ -29,3 +29,7 @@ img{
     border-radius: 50%;
     padding-bottom: 5px;
 }
+.tagerror{
+    color:red;
+    font-size: small;
+}

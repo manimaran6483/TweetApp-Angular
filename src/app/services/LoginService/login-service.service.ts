@@ -33,13 +33,13 @@ export class LoginService {
     return sessionStorage.getItem("isLoggedIn") === 'true' ? true : false;
   }
 
-  getAllUsers(){
+  getAllUsers(): Observable<any> {
     let url = environment.backendEndpoint+TweetAppConstants.GET_ALL_USERS_PATH;
     const headers = this.getHeaders();
     return this.http.get<UserResponse>(url,{headers : headers});
   }
 
-  searchUser(username:any){
+  searchUser(username:any): Observable<any> {
     let url = environment.backendEndpoint+TweetAppConstants.SEARCH_USER_PATH+username;
     const headers = this.getHeaders();
     return this.http.get<UserResponse>(url,{headers : headers});

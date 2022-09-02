@@ -1,15 +1,43 @@
 <div class="tweet-container">
-    <img class="avatar" src="'../../../assets/avatar.jpg" alt="avatar image" />
+
+    <img class="avatar" [src]="tweet.avatar" alt="avatar image" />
     <span style="
-    font-size: small;
-    font-weight: bold;
-    color: rgb(55, 148, 172);">{{' @'+tweet.loginId}}</span>
+            font-size: small;
+            font-weight: bold;
+            color: rgb(55, 148, 172);">{{' @'+tweet.loginId}}</span>
 
     <img class="likeIcon" *ngIf="!isLiked" src="'../../../assets/tweet-unlike.png" alt="avatar image"
         (click)="onLikeClick()" />
-    <img class="likeIcon" *ngIf="isLiked" src="'../../../assets/tweet-like.png" alt="avatar image"/>
-
+    <img class="likeIcon" *ngIf="isLiked" src="'../../../assets/tweet-like.png" alt="avatar image" />
+    <span *ngIf="canEditAndDelete" (click)="onDelete()"><img class="deleteicon" src="https://img.icons8.com/sf-regular/48/000000/filled-trash.png"/></span>
+    <span *ngIf="canEditAndDelete" (click)="onEdit()"><img class="editicon" src="https://img.icons8.com/windows/32/000000/edit--v1.png"/></span>
     <span class="likeCount">{{tweet.likeCount}}</span>
-    <span class="postTime"> {{tweet.postedDate}} </span>
-    <p> {{tweet.tweet}}</p>
+    <span class="postTime"> {{tweet.postedDate.substring(0,11)}} </span>
+    <div class="row" *ngIf="!showEdit">
+        <div class="col-lg-11">
+            <p> {{tweet.tweet}}</p>
+        </div>
+        <div class="col-lg-1">
+            <span class="replyspan"  (click)="openreply()" style="color: rgb(55, 148, 172);">reply<img class="reply"
+                    src="https://img.icons8.com/external-bartama-outline-32-bartama-graphic/32/000000/external-arrow-e-mail-bartama-outline-32-bartama-graphic-2.png" /></span>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="showReply">
+        <div class="col-lg-11">
+            <textarea type="text" name="reply" id="reply" #replyText placeholder="Type Your Reply" rows="3"></textarea>
+        </div>
+        <div class="col-lg-1">
+            <button class="btn btn-lg btn-info" type="button" (click)="replyTweet(replyText.value)">Reply</button>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="showEdit">
+        <div class="col-lg-11">
+            <textarea type="text" name="reply" id="reply" #editText placeholder="Type Your Reply" rows="2" value="{{tweet.tweet}}"></textarea>
+        </div>
+        <div class="col-lg-1">
+            <button class="btn btn-lg btn-info" type="button" (click)="editTweet(editText.value)">Edit</button>
+        </div>
+    </div>
 </div>

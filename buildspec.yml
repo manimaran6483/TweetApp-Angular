@@ -12,7 +12,7 @@ phases:
   build:
     commands:
       - echo build process started...
-      - ng build
+      - ng build --prod
   post_build:
     commands:
       - echo Build succcess, Build files upload in progress...

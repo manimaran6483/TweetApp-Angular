@@ -16,5 +16,9 @@ phases:
   post_build:
     commands:
       - echo Build succcess, Build files upload in progress...
-      - aws s3 sync . s3://tweetwebapp/buildfiles/ --delete
-      - echo Build files uploaded to S3.
+artifacts:
+  files:
+    - "**/*"
+  discard-paths: no
+  base-directory: "dist*"
+

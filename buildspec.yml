@@ -1,0 +1,22 @@
+version: 0.2
+env:
+  variables:
+    APP_NAME: "TweetWebApp"
+phases:
+  install:
+    runtime-versions:
+      nodejs: 14.x
+    commands:
+      - echo install process started...
+      - npm install && npm install -g @angular/cli
+  build:
+    commands:
+      - echo build process started...
+      - ng build --configuration=production
+  post_build:
+    commands:
+      - echo Build succcess, Build files upload in progress...
+      - cd dist/$APP_NAME
+      - ls -la
+      - aws s3 sync . s3://tweetwebapp/buildfiles/ --delete
+	    - echo Build files uploaded to S3.

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm, NgModel } from '@angular/forms';
 import { TweetService } from 'src/app/services/TweetService/tweet.service';
 import { UtilService } from 'src/app/services/UtilService/util.service';
+import { Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-post-tweet',
@@ -9,6 +10,9 @@ import { UtilService } from 'src/app/services/UtilService/util.service';
   styleUrls: ['./post-tweet.component.css']
 })
 export class PostTweetComponent implements OnInit {
+
+  @Output() newItemEvent = new EventEmitter<string>();
+
   invalidTag = false;
   constructor(private tweetService : TweetService,private utilService :UtilService) { }
 
@@ -32,6 +36,7 @@ export class PostTweetComponent implements OnInit {
       let statusCode = response.responseHeader.transactionNotification.statusCode;
         if(statusCode ==='0'){
           window.alert("Post Added Success..!");
+          this.newItemEvent.emit("reload");
         }
       },(response:any)=> {
         let RegError=response.error.responseHeader.transactionNotification.remarks.messages[0].description;

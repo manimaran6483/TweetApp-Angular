@@ -1,14 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TweetService } from 'src/app/services/TweetService/tweet.service';
 import { UtilService } from 'src/app/services/UtilService/util.service';
-
+import { Output, EventEmitter } from '@angular/core';
 @Component({
   selector: 'app-tweet-item',
   templateUrl: './tweet-item.component.html',
   styleUrls: ['./tweet-item.component.css']
 })
 export class TweetItemComponent implements OnInit {
-
+  @Output() newItemEvent = new EventEmitter<string>();
   @Input() tweet: any;
   @Input() canEditAndDelete!:boolean;
   isLiked :boolean =false;
@@ -70,6 +70,19 @@ export class TweetItemComponent implements OnInit {
   onDelete(){
     if(confirm("Are you sure you want to delete this Tweet?")){
       console.log("Pressed Yes");
+      this.tweetService.deleteTweet(sessionStorage.getItem('loginId'),this.tweet.id).subscribe(response=>{
+        let statusCode = response.responseHeader.transactionNotification.statusCode;
+        if(statusCode ==='0'){
+          window.alert("Tweet Deleted..!");
+          this.newItemEvent.emit("reload");
+        }else{
+          let RegError=response.responseHeader.transactionNotification.remarks.messages[0].description;
+          window.alert(RegError);
+        }
+      },(response:any)=> {
+        let RegError=response.error.responseHeader.transactionNotification.remarks.messages[0].description;
+        window.alert(RegError);
+      });
     }else{
       console.log("Pressed No");
     }

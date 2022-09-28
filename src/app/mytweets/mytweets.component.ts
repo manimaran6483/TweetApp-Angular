@@ -33,4 +33,15 @@ export class MytweetsComponent implements OnInit {
     })
   }
  
+  reloadTweets(input:string){
+    if(input==='reload'){
+      this.tweetService.getTweetsofUser(sessionStorage.getItem('loginId')).subscribe(response =>{
+        this.allTweets = response.data;
+        this.allTweets.forEach( (tweet,index) =>{
+          tweet.avatar=this.allAvatars[index%10];
+        })
+      })
+    }
+  }
+
 }

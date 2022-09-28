@@ -42,7 +42,13 @@ export class TweetsComponent implements OnInit {
     }
   }
  
-
+  reloadTweets(input:string){
+    if(input==='reload'){
+      this.tweetService.getAllTweets().subscribe(data => {
+        this.processTweets(data);
+      });
+    }
+  }
   
 
 }

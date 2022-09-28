@@ -1,5 +1,4 @@
 <div class="main">
-    <app-post-tweet></app-post-tweet>
+    <app-post-tweet (newItemEvent)="reloadTweets($event)"></app-post-tweet>
     <app-tweet-item *ngFor="let tweet of allTweets" [canEditAndDelete]="canEditAndDelete" [tweet]="tweet"></app-tweet-item>
-
 </div>

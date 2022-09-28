@@ -1,14 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { LoginComponent } from './login.component';
-
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { FormsModule } from '@angular/forms';
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LoginComponent ]
+      declarations: [ LoginComponent ],
+      imports: [HttpClientTestingModule,RouterTestingModule,FormsModule]
     })
     .compileComponents();
   });
@@ -18,8 +20,12 @@ describe('LoginComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
+    it('test isLogin set',()=>{
+      expect(component.isLogin).not.toBeDefined;
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+      component.ngOnInit();
+      expect(component.isLogin).toBeDefined;
+      expect(component.isLogin).toBe(true);
+    })
+
 });
